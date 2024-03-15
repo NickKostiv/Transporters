@@ -150,17 +150,6 @@ const Contact = () => {
               height: "auto",
             }}
           />
-          <Image
-            src="/contact2.webp"
-            width={301}
-            height={234}
-            alt="Studio green img"
-            className="w-full max-w-[301px] h-full min-h-[234px]"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
         </div>
         <div className="flex md:flex-wrap md:flexCenter">
           <Image
