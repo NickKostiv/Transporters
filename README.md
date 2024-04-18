@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Transporters Website
 
-## Getting Started
+Welcome to the Transporters website repository! This project is a React application built with Next.js and styled with Tailwind CSS. It provides information about a company specializing in cargo transportation via water, road, and air. 
 
-First, run the development server:
+## 🚛🛫🚢 Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Transporters is a fictitious company dedicated to delivering goods efficiently across various modes of transportation. This website serves as a platform to showcase the company's services, fleet, and contact information.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run this project locally, follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository: `git clone https://github.com/your-username/transporters-website.git`
+2. Navigate to the project directory: `cd transporters-website`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm run dev`
+5. Open your browser and visit `http://localhost:3000` to view the website.
 
-## Learn More
+## 📱 Custom Hook - `useMobileView`
 
-To learn more about Next.js, take a look at the following resources:
+The `useMobileView` hook helps determine whether the current viewport is considered a mobile view based on the provided `maxWidth`. Here's how you can use it:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+import { useState, useEffect } from "react";
 
-## Deploy on Vercel
+function useMobileView(maxWidth: number) {
+  const [isMobileView, setIsMobileView] = useState(false);
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < maxWidth);
+    };
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [maxWidth]);
+
+  return isMobileView;
+}
+
+export default useMobileView;
+
+
+## 🧭 Components - `Header`
+
+The `Header` component provides navigation functionality and dropdown menus. Here's an overview:
+
+
+import { useState, useEffect, useRef } from "react";
+
+const Header = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLLIElement>(null);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  const toggleDropDown = () => {
+    setIsDropDownOpen(!isDropDownOpen);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      event.target instanceof Node &&
+      !dropdownRef.current.contains(event.target)
+    ) {
+      setIsDropDownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    const listener = (event: MouseEvent) => handleClickOutside(event);
+    document.addEventListener("mousedown", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+    };
+  }, []);
+
+  // JSX rendering and return statement
+};
+
+export default Header;
+
+
+## 📝 Contribution
+
+Welcome contributions to enhance the Transporters website. Feel free to open issues for feature requests or bug reports, and submit pull requests with improvements. Let's make cargo transportation smoother together!
