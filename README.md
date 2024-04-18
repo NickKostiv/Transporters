@@ -1,6 +1,6 @@
 # Transporters Website
 
-Welcome to the Transporters website repository! This project is a React application built with Next.js and styled with Tailwind CSS. It provides information about a company specializing in cargo transportation via water, road, and air. 
+Welcome to the Transporters website repository! This project is a React application built with Next.js and styled with Tailwind CSS, animated with AOS. It provides information about a company specializing in cargo transportation via water, road, and air. 
 
 ## 🚛🛫🚢 Overview
 
