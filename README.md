@@ -18,7 +18,7 @@ To run this project locally, follow these steps:
 
 ## 📱 Custom Hook - `useMobileView`
 
-The `useMobileView` hook helps determine whether the current viewport is considered a mobile view based on the provided `maxWidth`. Here's how you can use it:
+The useMobileView hook helps determine whether the current viewport is considered a mobile view based on the provided maxWidth. Here's how you can use it:
 
 
 import { useState, useEffect } from "react";
@@ -85,6 +85,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
 ## 📝 Contribution
